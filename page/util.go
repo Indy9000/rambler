@@ -27,7 +27,7 @@ func parseHTML(htmlContent string) (map[string]bool, map[string]bool) {
 	extractor := func(n *html.Node, k string, m map[string]bool) {
 		for _, a := range n.Attr {
 			if a.Key == k {
-				log.Printf("found : %s", a.Val)
+				// log.Printf("found : %s", a.Val)
 				m[a.Val] = true
 			}
 		}
@@ -79,6 +79,10 @@ func validateLink(domain *url.URL, URL string) *url.URL {
 		if domain.Host == u.Host { // inside this domain
 			return u
 		}
+		return nil
+	}
+
+	if URL[0] == '#' {
 		return nil
 	}
 
